@@ -2,6 +2,11 @@
 
 require_once __DIR__ . '/../utils/all_includes.php';
 
+if (!isset($_SESSION['admin'])) {
+    http_response_code(403);
+    exit;
+}
+
 if (isset($_GET['id_produit'])) {
 
     $dao = new ProduitDAO($cnx);

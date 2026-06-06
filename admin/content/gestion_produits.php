@@ -5,25 +5,26 @@ require_once __DIR__ . '/../src/php/utils/check_connection.php';
 <h2>Gestion des produits</h2>
 
 <?php
-if (isset($_GET['submit'])) {
+if (isset($_POST['submit'])) {
     if (
-        $_GET['nom'] != '' &&
-        $_GET['description'] != '' &&
-        $_GET['prix'] != '' &&
-        $_GET['stock'] != '' &&
-        $_GET['image'] != '' &&
-        $_GET['id_categorie'] != ''
+        $_POST['nom'] != '' &&
+        $_POST['description'] != '' &&
+        $_POST['prix'] != '' &&
+        $_POST['stock'] != '' &&
+        $_POST['image'] != '' &&
+        $_POST['id_categorie'] != ''
     ) {
         $produitDAOAjout = new ProduitDAO($cnx);
 
         $produitDAOAjout->ajoutProduit(
-            $_GET['nom'],
-            $_GET['description'],
-            $_GET['prix'],
-            $_GET['stock'],
-            $_GET['image'],
-            $_GET['id_categorie']
+            $_POST['nom'],
+            $_POST['description'],
+            $_POST['prix'],
+            $_POST['stock'],
+            $_POST['image'],
+            $_POST['id_categorie']
         );
+
         header('Location: index_.php?page=gestion_produits.php');
         exit;
     }
@@ -41,7 +42,7 @@ $data = $produitDAO->getVueProduits();
 <div class="container mt-4">
     <button class="btn btn-primary mb-3" id="inserer">Insérer un nouveau produit</button>
 
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get" id="ajout_nouveau">
+    <form action="index_.php?page=gestion_produits.php" method="post" id="ajout_nouveau">
         <table class="table table-striped table-hover">
             <tr>
                 <td><input type="text" class="form-control" name="nom" placeholder="Nom du produit"></td>
@@ -50,7 +51,7 @@ $data = $produitDAO->getVueProduits();
                 <td><textarea class="form-control" name="description" placeholder="Description"></textarea></td>
                 <td>
                     <select class="custom-select" name="id_categorie">
-                        <option selected>Choisissez la catégorie</option>
+                        <option value="">Choisissez la catégorie</option>
                         <?php foreach ($categories as $cat) { ?>
                             <option value="<?= $cat->getIdCategorie(); ?>">
                                 <?= $cat->getNomCategorie(); ?>
@@ -76,7 +77,6 @@ $data = $produitDAO->getVueProduits();
                 <th>Description</th>
                 <th>Catégorie</th>
                 <th>Image</th>
-                
             </tr>
 
             <?php foreach ($data as $row) { ?>
@@ -98,7 +98,9 @@ $data = $produitDAO->getVueProduits();
                             <?php } ?>
                         </select>
                     </td>
-                    <td> <img src="../assets/images/<?= $row->image; ?>" alt="<?= $row->nom; ?>"  width="80"> </td>
+                    <td>
+                        <img src="./assets/images/<?= $row->image; ?>" alt="<?= $row->nom; ?>" width="80">
+                    </td>
                     <td class="delete" data-id="<?= $row->id_produit; ?>">🗑️</td>
                 </tr>
             <?php } ?>
