@@ -22,9 +22,9 @@ if (isset($_GET['categorie'])) {
         <?php foreach ($produits as $produit) { ?>
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <img src="./assets/images/<?= $produit->image; ?>"
-                         class="card-img-top"
-                         alt="<?= $produit->nom; ?>">
+                    <img src="./admin/assets/images/<?= $produit->image; ?>"
+                        class="card-img-top"
+                        alt="<?= $produit->nom; ?>">
 
                     <div class="card-body">
                         <h5 class="card-title"><?= $produit->nom; ?></h5>

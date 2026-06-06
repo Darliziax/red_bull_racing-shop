@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../utils/check_connection.php';
+require_once __DIR__ . '/../src/php/utils/check_connection.php';
 ?>
 
 <div class="container mt-4">

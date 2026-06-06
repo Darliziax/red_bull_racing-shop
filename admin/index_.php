@@ -1,5 +1,5 @@
 <?php
-require_once '../utils/all_includes.php';
+require_once __DIR__ . '/src/php/utils/all_includes.php';
 
 if (!isset($_SESSION['admin'])) {
     $_SESSION['page'] = './content/login.php';
@@ -24,16 +24,16 @@ if (!isset($_SESSION['admin'])) {
     <meta charset="UTF-8">
     <title>Administration - Red Bull Racing Shop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/custom.css">
 </head>
 <body>
 
 <?php
-include '../utils/header.php';
+include __DIR__ . '/src/php/utils/header.php';
 
 if (isset($_SESSION['admin'])) {
-    include '../utils/admin_menu.php';
+    include __DIR__ . '/src/php/utils/admin_menu.php';
 
     echo '<main>';
     include $_SESSION['page_admin'];
@@ -44,10 +44,10 @@ if (isset($_SESSION['admin'])) {
     echo '</main>';
 }
 
-include '../utils/footer.php';
+include __DIR__ . '/src/php/utils/footer.php';
 ?>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="../assets/js/fonctions.js"></script>
+<script src="./assets/js/fonctions.js"></script>
 </body>
 </html>

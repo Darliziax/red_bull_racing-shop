@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../../utils/all_includes.php';
+require_once __DIR__ . '/../utils/all_includes.php';
 
 if (
     isset($_POST['id']) &&
